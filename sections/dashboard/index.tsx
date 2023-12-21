@@ -1,13 +1,13 @@
 import { logout } from "@/slices/auth/reducer";
+import { useDispatch } from "@/store";
 import { Button } from "@mui/material";
 import React from "react";
-import { useDispatch } from "react-redux";
 
 const DashboardSection = () => {
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
-    // dispatch(logout(false));
+    dispatch(logout());
   };
   return (
     <div>

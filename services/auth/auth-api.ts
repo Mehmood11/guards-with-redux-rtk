@@ -16,7 +16,13 @@ export const authApi = baseApi.injectEndpoints({
         body: credential,
       }),
     }),
+    refresh: builder.query({
+      query: () => ({
+        url: "/refresh",
+        method: "GET"
+      }),
+    }),
   }),
 });
 
-export const {useLoginMutation, useSignupMutation} = authApi
+export const {useLoginMutation, useSignupMutation, useLazyRefreshQuery} = authApi

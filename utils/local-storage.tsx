@@ -1,7 +1,7 @@
-export function getSessionStorage(key: string): string | null {
+export function getLocalStorage(key: string): string | null {
   let data: string | null = null;
   try {
-    data = typeof window !== "undefined" ? sessionStorage.getItem(key) : null;
+    data = typeof window !== "undefined" ? localStorage.getItem(key) : null;
     if (data) {
       data = JSON.parse(data);
     }
@@ -12,24 +12,24 @@ export function getSessionStorage(key: string): string | null {
   return data;
 }
 
-export function setSessionStorage(key: string, data: any): void {
+export function setLocalStorage(key: string, data: any): void {
   try {
     typeof window !== "undefined" &&
-      sessionStorage.setItem(key, JSON.stringify(data));
+      localStorage.setItem(key, JSON.stringify(data));
   } catch (error) {
     /* empty */
   }
 }
 
-export function removeSessionStorage(key: string): void {
+export function removeLocalStorage(key: string): void {
   try {
-    typeof window !== "undefined" && sessionStorage.removeItem(key);
+    typeof window !== "undefined" && localStorage.removeItem(key);
   } catch (error) {
     // If stored data is not a stringified JSON this might fail,
     // that's why we catch the error
   }
 }
 
-export function clearSessionStorage(): void {
-  sessionStorage.clear();
+export function clearLocalStorage(): void {
+  localStorage.clear();
 }
