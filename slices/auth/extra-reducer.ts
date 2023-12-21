@@ -2,7 +2,7 @@ import { setSessionStorage } from "@/utils/session-storage";
 
 export const loginSuccess = (state: any, action: any): void => {
   const { data } = action.payload;
-  console.log(data);
+  
   state.accessToken = data.token;
   // state.refreshToken = data.refreshToken;
   state.user = data.user;
@@ -14,8 +14,6 @@ export const loginSuccess = (state: any, action: any): void => {
 
 export const authMeSuccess = (state: any, action: any): void => {
   const { data } = action.payload;
-  console.log("ref", data);
-
   state.accessToken = data.token;
   // state.refreshToken = data.refreshToken;
   state.isAuthenticated = true;

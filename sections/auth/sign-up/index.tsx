@@ -133,15 +133,8 @@ export default function SignUpSection() {
           >
             Sign UP
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="/sign-up">Forgot password?</Link>
-            </Grid>
-            <Grid item>
-              <Link href="/sign-up">{"Don't have an account? Sign Up"}</Link>
-            </Grid>
-          </Grid>
         </form>
+        <Link href="/login">Already have an account?</Link>
       </Box>
     </Container>
   );
