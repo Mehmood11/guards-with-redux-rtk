@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast/headless";
+import toast from "react-hot-toast";
 import { useLoginMutation } from "@/services/auth/auth-api";
 
 function Copyright(props: any) {

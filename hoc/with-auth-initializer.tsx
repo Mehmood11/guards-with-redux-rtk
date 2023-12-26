@@ -15,19 +15,21 @@ export function AuthInitializer(props: AuthProviderProps): JSX.Element {
   const [isInitialized, setIsInitialized] = useState(false);
 
   const {
-    auth: {
-      refreshToken,
-      accessToken,
-    },
+    auth: { refreshToken, accessToken, user },
   }: any = useSelector((state: { auth: any }) => state);
   const [refreshQuery, { isLoading }] = useLazyRefreshQuery();
   const { children } = props;
   const dispatch = useDispatch();
 
   const initialize = useCallback(async (): Promise<void> => {
-    if (accessToken) {
+    if (refreshToken && accessToken) {
       try {
-        await refreshQuery(null).unwrap();
+        await refreshQuery({
+          body: {
+            userId: user?.userId,
+            refreshToken,
+          },
+        }).unwrap();
       } catch (error: any) {
         toast.error(error?.data?.message || "Something Went Wrong");
         dispatch(logout());

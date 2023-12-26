@@ -17,14 +17,11 @@ import { useSignupMutation } from "@/services/auth/auth-api";
 import toast from "react-hot-toast";
 
 export default function SignUpSection() {
-  //   const router = useRouter();
+  const router = useRouter();
   const [signUp] = useSignupMutation();
   const [user, setUser] = React.useState({
-    first_name: "",
-    last_name: "",
     email: "",
     password: "",
-    password_confirmation: "",
   });
 
   const handleInputChange = (event: any) => {
@@ -41,8 +38,9 @@ export default function SignUpSection() {
     try {
       const res = await signUp(user).unwrap();
       toast.success(res.message || "Signed Up Successfully");
+      router.push("/login");
     } catch (error) {
-      toast.error("Error");
+      toast.error("Error Occur");
     }
   };
 
@@ -68,30 +66,6 @@ export default function SignUpSection() {
             margin="normal"
             required
             fullWidth
-            id="first_name"
-            label="First Name"
-            name="first_name"
-            autoComplete="first_name"
-            autoFocus
-            value={user.first_name}
-            onChange={handleInputChange}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="last_name"
-            label="Last Name"
-            name="last_name"
-            autoComplete="last_name"
-            autoFocus
-            value={user.last_name}
-            onChange={handleInputChange}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
             id="email"
             type="email"
             label="Email Address"
@@ -113,18 +87,7 @@ export default function SignUpSection() {
             value={user.password}
             onChange={handleInputChange}
           />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password_confirmation"
-            label="password_confirmation"
-            type="password"
-            id="password_confirmation"
-            autoComplete="password_confirmation"
-            value={user.password_confirmation}
-            onChange={handleInputChange}
-          />
+
           <Button
             type="submit"
             fullWidth
